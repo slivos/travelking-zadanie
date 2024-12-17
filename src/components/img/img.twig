@@ -1,0 +1,71 @@
+{%- set class_name = [
+  "img",
+  props.objectfit in ["cover", "contain"] ? "--" ~ props.objectfit : null,
+  props.is_placeholder ? "--placeholder" : null,
+  props.ratio in ["4-3", "16-9", "3-2", "1-1", "3-4"] ? "--ratio-" ~ props.ratio : null,
+  props.extra_class|default(false) ? props.extra_class : null
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+{# Image Attributes #}
+{%- set src_attribute = props.native_lazyload or props.disable_lazy ? 'src="' : 'src="" data-src="' -%}
+{%- set src_set_attribute = props.native_lazyload or props.disable_lazy ? 'srcset="' : 'srcset="" data-srcset="' -%}
+
+{%- set img_attrs = [
+  src_attribute ~ props.src|default("") ~ '"'
+] -%}
+
+{%- set img_attrs = img_attrs|merge(['alt="' ~ props.alt|default("") ~ '"']) -%}
+
+{%- if props.width is defined -%}
+  {%- set img_attrs = img_attrs|merge(['width="' ~ props.width ~ '"']) -%}
+{%- endif -%}
+
+{%- if props.height is defined -%}
+  {%- set img_attrs = img_attrs|merge(['height="' ~ props.height ~ '"']) -%}
+{%- endif -%}
+
+{%- if props.native_lazyload and not props.disable_lazy|default(false) -%}
+  {%- set img_attrs = img_attrs|merge(['loading="lazy"']) -%}
+{%- endif -%}
+
+{%- if props.sizes -%}
+  {%- set img_attrs = img_attrs|merge(['sizes="' ~ props.sizes|join(', ')|trim ~ '"']) -%}
+{%- endif -%}
+
+{%- if props.draggable|default(false) == false -%}
+  {%- set img_attrs = img_attrs|merge(['draggable="false"']) -%}
+{%- endif -%}
+
+{%- if props.srcset is defined -%}
+  {%- set img_attrs = img_attrs|merge([src_set_attribute ~ props.srcset|join(', ')|trim ~ '"']) -%}
+{%- endif -%}
+
+{% if props.fetchpriority in ["high", "low"] %}
+  {%- set img_attrs = img_attrs|merge(['fetchpriority="' ~ props.fetchpriority ~ '"']) -%}
+{% endif %}
+
+{% if props.aria_hidden == true %}
+  {%- set img_attrs = img_attrs|merge(['aria-hidden="true"']) -%}
+{% endif %}
+
+{%- set img_attrs = img_attrs|join(' ')|trim -%}
+
+<div {{ attrs|raw }}>
+  <picture>
+    {% if props.sources %}
+      {% include "@Components/source/source.twig" with {props: {
+        sources: props.sources,
+        native_lazyload: props.native_lazyload,
+        disable_lazy: props.disable_lazy,
+      }} %}
+    {% endif %}
+
+    <img {{ img_attrs|raw }}>
+  </picture>
+</div>

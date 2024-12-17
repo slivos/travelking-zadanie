@@ -1,0 +1,32 @@
+@use "settings/s-colors" as colors;
+
+.f-date__input {
+  display: none;
+}
+
+.f-date__wrap {
+  justify-content: center;
+
+  @include media-breakpoint-up(lg) {
+    justify-content: flex-start;
+  }
+}
+
+.f-date__price {
+  display: inline-block;
+  width: 100%;
+  font-size: 0.5938rem;
+  font-weight: 500;
+  color: colors.$black;
+  line-height: 1.1;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include media-breakpoint-up(lg) {
+    font-size: 0.75rem;
+    bottom: 8px;
+    line-height: 1.2;
+  }
+}

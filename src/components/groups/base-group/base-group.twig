@@ -1,0 +1,33 @@
+{% set aligns = {
+  left: 'justify-content-start',
+  right: 'justify-content-end',
+  center: 'justify-content-center',
+  between: 'justify-content-between',
+} %}
+
+{% set gaps = {
+  xs: 'gap-0.5',
+  sm: 'gap-1',
+  md: 'gap-2',
+  lg: 'gap-3',
+  xl: 'gap-4',
+} %}
+
+{%- set class_name = [
+  "g-base",
+  "d-flex flex-wrap",
+  props.align in ['left', 'right', 'between', 'center'] ? aligns[props.align] : aligns.left,
+  props.gap in ["xs", "sm", "md", "lg", "xl"] ? gaps[props.gap] : gaps.sm,
+  props.name|default(false) ? props.name : null,
+  props.extra_class|default(false) ? props.extra_class : null,
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+<div {{ attrs|raw }}>
+  {% block content %}{# content #}{% endblock %}
+</div>

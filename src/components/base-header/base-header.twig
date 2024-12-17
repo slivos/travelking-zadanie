@@ -1,0 +1,47 @@
+{%- set class_name = [
+  'base-header',
+  'd-flex',
+  'flex-column',
+  'gap-3',
+  'text-center',
+  'align-items-center',
+  props.variant in ['left'] ? '--' ~ props.variant : null,
+  props.spacing in ["none", "sm"] ? '--spacing-' ~ props.spacing : null,
+  props.extra_class|default(false) ? props.extra_class : null
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- if props.id is defined %}
+  {% set attrs = attrs|merge(['id="' ~ props.id ~ '"']) %}
+{%- endif -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+<header {{ attrs|raw }}>
+
+  {% if props.overline %}
+    {% include "@Components/base-overline/base-overline.twig" with {props: props.overline} %}
+  {% endif %}
+
+  {% if props.heading %}
+    {% include "@Components/base-heading/base-heading.twig" with {props: props.heading} %}
+  {% endif %}
+
+  {% if props.perex %}
+    <div class="base-header__description entry-content mb-0">{{ props.perex|raw }}</div>
+  {% endif %}
+
+  {% block content %}{# content #}{% endblock %}
+
+  {% if props.buttons %}
+    {% include "@Components/groups/buttons-group/buttons-group.twig" with {props: {
+      buttons: props.buttons,
+      align: props.variant,
+    }} %}
+  {% endif %}
+
+
+</header>

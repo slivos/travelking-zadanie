@@ -1,0 +1,24 @@
+{%- set class_name = [
+  'base-heading',
+  'mb-0',
+  'u-fw-700',
+  props.style in ["h1", "h2", "h3", "h4", "h5", "h6"] ? "u-" ~ props.style : "u-h2",
+  props.name ? props.name : null,
+  props.extra_class|default(true) ? props.extra_class : null,
+]|join(' ')|trim -%}
+
+{% set level = props.level in [1, 2, 3, 4, 5] ? props.level : 2 %}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+<h{{ level }} {{ attrs|raw }}>
+  {% block content %}
+    {% if props.title %}
+      {{ props.title|raw }}
+    {% endif %}
+  {% endblock %}
+</h{{ level }}>

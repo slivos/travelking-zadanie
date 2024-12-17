@@ -1,0 +1,22 @@
+@use "settings/s-colors" as colors;
+
+.i-legend {
+  &.--high {
+    --background-color: #{colors.$high-price};
+  }
+
+  &.--middle {
+    --background-color: #{colors.$middle-price};
+  }
+
+  &.--low {
+    --background-color: #{colors.$low-price};
+  }
+}
+
+.i-legend__price {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: var(--background-color);
+}

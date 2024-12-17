@@ -1,0 +1,62 @@
+@use "settings/s-colors" as colors;
+
+.btn {
+  &.--primary {
+    --background: #{colors.$primary-300};
+
+    background-color: var(--background);
+    transition: background-color 0.3s ease;
+
+    @media (hover: hover) {
+      &:hover {
+        --background: #{colors.$primary};
+      }
+    }
+  }
+
+  &.--outline {
+    --font-color: #{colors.$primary-300};
+    --border-color: #{colors.$primary-200};
+    --background: #{colors.$white};
+    --box-shadow: 0 0 0 0 transparent;
+
+    background-color: var(--background);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    transition: box-shadow 0.3s ease;
+
+    @media (hover: hover) {
+      &:hover {
+        --box-shadow: #{0 4px 16px 1px rgb(13 191 176 / 20%)};
+      }
+    }
+  }
+
+  &.--ghost {
+    --background: transparent;
+    --font-color: #{colors.$primary};
+
+    background-color: var(--background);
+    transition: background-color 0.3s ease;
+
+    @media (hover: hover) {
+      &:hover {
+        --background: #{colors.$primary-100};
+      }
+    }
+  }
+
+  &.--disabled {
+    --background: #{colors.$disabled-primary};
+
+    background-color: var(--background);
+    pointer-events: none;
+    user-select: none;
+
+    @media (hover: hover) {
+      &:hover {
+        --background: #{colors.$disabled-primary};
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@import "src/scss/settings/s-bootstrap";
+@import "src/scss/vendors/*";
+
+/*! purgecss start ignore */
+
+@import "src/scss/overrides/*";
+@import "src/scss/elements/*";
+@import "src/scss/generic/*";
+@import "src/scss/utilities/*";
+@import "src/components/**/*";
+
+/*! purgecss end ignore */

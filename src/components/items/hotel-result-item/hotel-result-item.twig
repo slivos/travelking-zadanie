@@ -1,0 +1,15 @@
+{%- set class_name = [
+  "i-hotel-result",
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+<div {{ attrs|raw }}>
+  <div class="i-hotel-result__left">
+    <h3 class="u-h4">{{ props.description }}</h3>
+  </div>
+</div>

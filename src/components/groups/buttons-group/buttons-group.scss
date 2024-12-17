@@ -1,0 +1,9 @@
+.g-buttons {
+  --spacing: 64px;
+
+  margin-top: var(--spacing);
+
+  &.--spacing-none {
+    --spacing: 0;
+  }
+}

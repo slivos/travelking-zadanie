@@ -1,0 +1,14 @@
+@use "settings/s-colors" as colors;
+
+.u-border-none {
+  border: none;
+}
+
+.u-border-primary {
+  border-color: colors.$primary;
+}
+
+.u-border {
+  border-width: 1px;
+  border-style: solid;
+}

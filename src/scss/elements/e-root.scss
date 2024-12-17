@@ -1,0 +1,11 @@
+@use "settings/s-colors" as colors;
+
+:root {
+  /* Section spacing */
+  --section-spacing: 88px;
+  --section-background-color: #{colors.$primary-100};
+
+  @include media-breakpoint-down(sm) {
+    --section-spacing: 64px;
+  }
+}

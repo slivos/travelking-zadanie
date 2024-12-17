@@ -1,0 +1,27 @@
+.base-header {
+  --spacing: 88px;
+
+  margin-inline: auto;
+  max-width: 65ch;
+  margin-bottom: var(--spacing);
+
+  &.--left {
+    align-items: flex-start;
+    text-align: left;
+    margin-inline: 0;
+  }
+
+  &.--spacing-none {
+    --spacing: 0;
+  }
+
+  &.--spacing-sm {
+    --spacing: 24px;
+  }
+}
+
+.base-header__description {
+  p {
+    margin-bottom: 0;
+  }
+}

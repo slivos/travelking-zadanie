@@ -1,0 +1,91 @@
+{%- set class_name = [
+  "btn",
+  "u-posr u-cursor-pointer u-border-none u-z-index-1",
+  "d-inline-flex gap-1 align-items-center justify-content-center flex-nowrap flex-shrink-0",
+  "user-select-none text-decoration-none",
+  props.variant in ["outline", "primary", "ghost"] ? "--" ~ props.variant : "--primary",
+  props.size in ["xs", "sm"] ? "--" ~ props.size : null,
+  props.animation in ["right", "zoom", "left", "down"] ? "--animation-" ~ props.animation : null,
+  props.icon_before == true ? "--icon-before" : null,
+  props.icon_only == true ? "--icon-only" : null,
+  props.full_width_mobile == true ? "--full-width-mobile" : null,
+  props.full_width == true ? "--full-width w-100" : null,
+  props.full_width in ["sm", "md"] ? "w-100 w-" ~ props.full_width ~ "-auto" : null,
+  props.extra_class ? props.extra_class : null,
+]|join(' ')|trim -%}
+
+{%- set tag = props.tag in ['button', 'a', 'span'] ? props.tag : "a" -%}
+
+{%- set href_value = props.url is defined ? props.url : '#' -%}
+
+{%- set href = tag == 'a' ? "href='" ~ href_value ~ "'" : null -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- if href -%}
+  {%- set attrs = attrs|merge([href]) -%}
+{%- endif -%}
+
+{%- if props.id %}
+  {%- set attrs = attrs|merge(['id="' ~ props.id ~ '"']) -%}
+{%- endif -%}
+
+{%- if props.type and tag == "button" %}
+  {%- set attrs = attrs|merge(['type="' ~ props.type ~ '"']) -%}
+{%- endif -%}
+
+{%- if props.blank is defined and tag == "a" %}
+  {%- set attrs = attrs|merge(['target="_blank"']) -%}
+{%- endif -%}
+
+{%- if tag == "button" and props.title %}
+  {%- set attrs = attrs|merge(['aria-label="' ~ props.title ~ '"']) -%}
+{%- endif -%}
+
+{%- if props.name and tag == "button" %}
+  {% set attrs = attrs|merge(['name=' ~ props.name ~ '']) %}
+{%- endif -%}
+
+{%- if props.value and tag == "button" %}
+  {%- set attrs = attrs|merge(['value="' ~ props.value ~ '"']) -%}
+{%- endif -%}
+
+{% if props.icon_only and tag == 'a' and props.title %}
+  {%- set attrs = attrs|merge(['title="' ~ props.title ~ '"']) -%}
+{% endif %}
+
+{%- if props.data is defined -%}
+  {%- set data_attrs = [] -%}
+  {%- for key, attribute in props.data -%}
+    {%- set data_attrs = data_attrs|merge(['data-' ~ key ~ '="' ~ attribute ~ '"']) -%}
+  {%- endfor -%}
+  {%- set data_attrs = data_attrs|join(' ')|trim -%}
+  {%- set attrs = attrs|merge([data_attrs]) -%}
+{%- endif -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+<{{ tag }} {{ attrs|raw }}>
+  {% if not props.icon_only %}
+    <span class="btn__title">
+      {{ props.title }}
+    </span>
+  {% endif %}
+
+  {% if props.icon %}
+    <span class="btn__icon d-flex align-items-center justify-content-center">
+      {% include "@Components/icon/icon.twig" with {props: {
+        src: props.icon.src,
+        color: props.icon.color,
+        size: props.icon.size,
+      }} %}
+    </span>
+  {% endif %}
+</{{ tag }}>
+
+{# css Purge ignore
+  w-sm-auto
+  w-md-auto
+#}

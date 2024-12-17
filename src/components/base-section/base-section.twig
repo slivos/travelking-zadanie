@@ -1,0 +1,36 @@
+{%- set class_name = [
+  'base-section',
+  props.spacing in ['top-0', 'bottom-0', 'none'] ? '--' ~ props.spacing : null,
+  props.name ? props.name : null,
+  props.background == true ? '--background' : null,
+  props.extra_class ? props.extra_class : null,
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- if props.id is defined %}
+  {% set attrs = attrs|merge(['id="' ~ props.id ~ '"']) %}
+{%- endif -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+{%- set container_class_name = [
+  'base-section__container',
+  props.is_container ?? "container",
+]|join(' ')|trim -%}
+
+
+{%- set container_attrs = [
+  'class="' ~ container_class_name ~ '"',
+] -%}
+
+{%- set container_attrs = container_attrs|join(' ')|trim -%}
+
+
+<section {{ attrs|raw }}>
+  <div {{ container_attrs|raw }}>
+    {% block content %}{# content #}{% endblock %}
+  </div>
+</section>

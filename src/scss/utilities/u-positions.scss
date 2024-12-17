@@ -1,0 +1,47 @@
+.u-posr {
+  position: relative;
+}
+
+.u-posa {
+  position: absolute;
+}
+
+.u-fixed {
+  position: fixed;
+}
+
+.u-sticky {
+  position: sticky;
+}
+
+.u-top-50-p {
+  top: 50%;
+}
+
+.u-left-50-p {
+  left: 50%;
+}
+
+.u-top-0 {
+  top: 0;
+}
+
+.u-left-0 {
+  left: 0;
+}
+
+.u-right-0 {
+  right: 0;
+}
+
+.u-translate-middle-x {
+  transform: translateX(-50%);
+}
+
+.u-translate-middle-y {
+  transform: translateY(-50%);
+}
+
+.u-translate-middle {
+  transform: translateX(-50%) translateY(-50%);
+}

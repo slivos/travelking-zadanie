@@ -1,0 +1,30 @@
+{%- set class_name = [
+  "icon",
+  "d-flex align-items-center justify-content-center",
+  props.color in ["primary", "primary-300", "gray", "white", "black", "danger"] ? "--colored --" ~ props.color : null,
+  props.size in ["xs", "sm", "md", "lg", "xl", "xxl", "xxxl", "8xl"] ? "--" ~ props.size : null,
+  props.extra_class|default(false) ? props.extra_class : null,
+  props.name|default(false) ? props.name : null,
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+{%- set tag = props.tag in ['div', 'span'] ? props.tag : "span" -%}
+
+{% if props.src %}
+  {% set is_svg = props.src|split('.')|last == "svg" %}
+
+  <{{ tag }} {{ attrs|raw }}>
+    {% if is_svg %}
+      {% include props.src %}
+    {% else %}
+      {% include "@Components/img/img.twig" with {props: {
+        src: props.src,
+      }} %}
+    {% endif %}
+  </{{ tag }}>
+{% endif %}

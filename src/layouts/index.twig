@@ -1,0 +1,151 @@
+{% extends "@Components/layout-base/layout-base.twig" %}
+
+{% block title %}
+  Homepage
+{% endblock %}
+
+{% set hotel_availability_section_props = {
+  id: "hotel-availabilities",
+  header: {
+    heading: {
+      title: "Overte dostupnosť a rezervujte si svoju izbu teraz"
+    },
+    overline: {
+      title: "hotel",
+    },
+    perex: "Chystáte sa na dovolenku alebo pracovnú cestu? Overte si, ktoré hotely sú k dispozícii vo vašom termíne a vyberte si ideálnu izbu na základe svojich požiadaviek.",
+  },
+  buttons: {
+    primary: {
+      title: "Rezervovať dátum",
+      type: "button",
+      tag: "button",
+      data: {
+        "modal-target": "modal-reservation",
+      },
+    }
+  },
+  modal: {
+    title: "Rezervácia hotela",
+    form_data: {
+      form: {
+        action: "",
+        method: "POST",
+      },
+      legends: [
+        {
+          title: "€€€",
+          price: "high"
+        },
+        {
+          title: "€€",
+          price: "middle"
+        },
+        {
+          title: "€",
+          price: "low"
+        },
+      ],
+      submit: {
+        title: "Potvrdiť",
+      },
+    }
+  },
+  group: {
+    items: [
+
+    ]
+  },
+  empty_title: "Žiadne výsledky"
+} %}
+
+{% set usps_section = {
+  id: "advantages",
+  header: {
+    overline: {
+      title: "výhody",
+    },
+    heading: {
+      title: "Výhody využitia rezervačných platforiem"
+    },
+    perex: "Využitie online rezervačných platforiem na rezerváciu hotelov prináša množstvo výhod, ktoré zjednodušujú a zefektívňujú celý proces plánovania cesty."
+  },
+  items: usps_sample,
+} %}
+
+{% set banner_section = {
+  banner: {
+    title: "Rezervujte si hotel jednoducho a rýchlo",
+    description: "Rýchla a jednoduchá rezervácia hotelov na dosah ruky! Vyberte si z tisícov možností a zarezervujte si ideálne ubytovanie pre váš pobyt. ",
+    buttons: {
+      secondary: {
+        title: "Zistiť viac",
+        url: "#hotel-availabilities",
+      }
+    },
+  }
+} %}
+
+{% set content_sample %}
+<p>
+  Rezervácia hotelov online je moderný a efektívny spôsob, ako si zabezpečiť ideálne ubytovanie na cestách. Vďaka rôznym rezervačným platformám, ako sú Booking.com, Expedia či Airbnb, môžete jednoducho porovnávať ceny, vybavenie a polohu hotelov, aby ste našli najlepšiu ponuku podľa vašich preferencií a rozpočtu.
+</p>
+<p>
+Jednou z najväčších výhod online rezervácií je flexibilita. Mnohé hotely ponúkajú možnosť zrušenia rezervácie bez poplatkov, čo poskytuje väčšiu slobodu pri plánovaní. Okrem toho si môžete užívať výhody vernostných programov, špeciálnych zliav a exkluzívnych ponúk, ktoré tieto platformy pravidelne aktualizujú.
+</p>
+{% endset %}
+
+{% set text_media_props = {
+  id: "about",
+  header: {
+    heading: {
+      title: "Pohodlný spôsob, ako nájsť ideálne ubytovanie"
+    },
+    overline: {
+      title: "rezervácia",
+    },
+  },
+  header_position: "in",
+  order: "default",
+  media: {
+    img: {
+      src: "https://picsum.photos/688/459",
+      srcset: [
+        "https://picsum.photos/688/459 1x",
+        "https://picsum.photos/1376/918 2x"
+      ]
+    },
+  },
+  content: content_sample,
+} %}
+
+{% set text_media_reverse_props = {
+  header: {
+    heading: {
+      title: "Rôznorodé možnosti ubytovania pre každého cestovateľa"
+    },
+    overline: {
+      title: "cestovanie",
+    },
+  },
+  header_position: "in",
+  order: "reverse",
+  media: {
+    img: {
+      src: "https://picsum.photos/688/459",
+      srcset: [
+        "https://picsum.photos/688/459 1x",
+        "https://picsum.photos/1376/918 2x"
+      ]
+    },
+  },
+  content: content_sample,
+} %}
+
+{% block main %}
+  {% include "@Components/sections/hotel-availability-section/hotel-availability-section.twig" with {props: hotel_availability_section_props} %}
+  {% include "@Components/sections/usps-section/usps-section.twig" with {props: usps_section} %}
+  {% include "@Components/sections/text-and-media-section/text-and-media-section.twig" with {props: text_media_props} %}
+  {% include "@Components/sections/text-and-media-section/text-and-media-section.twig" with {props: text_media_reverse_props} %}
+    {% include "@Components/sections/banner-section/banner-section.twig" with {props: banner_section} %}
+{% endblock %}

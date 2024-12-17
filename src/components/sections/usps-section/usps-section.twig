@@ -1,0 +1,23 @@
+{% set com_props = props %}
+
+{% set section_props = {
+  name: "s-usps",
+  id: props.id,
+  is_container: props.is_container,
+  spacing: props.spacing,
+} %}
+
+
+{% embed "@Components/base-section/base-section.twig" with {props: section_props} %}
+  {% block content %}
+
+    {% if com_props.header %}
+      {% include "@Components/base-header/base-header.twig" with {props: com_props.header} %}
+    {% endif %}
+
+    {% include "@Components/groups/usps-group/usps-group.twig" with {props: {items: com_props.items}} %}
+
+    {% include "@Components/groups/buttons-group/buttons-group.twig" with {props: {buttons: com_props.buttons}} %}
+
+  {% endblock %}
+{% endembed %}

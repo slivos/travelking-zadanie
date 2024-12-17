@@ -1,0 +1,45 @@
+{% set com_props = props %}
+
+{% set form_props = {
+  name: "f-reservation",
+  extra_class: "d-flex flex-column row-gap-3",
+} %}
+
+{% set transport = com_props.form_data.transport_data %}
+{% set billing = com_props.form_data.billing_data %}
+
+{% set heading = {
+  level: 3,
+  style: "h5"
+} %}
+
+{% if props.form_data.form %}
+  {% set form_props = props.form_data.form|merge(form_props) %}
+{% endif %}
+
+{% embed "@Components/base-form/base-form.twig" with {props: form_props} %}
+  {% block content %}
+
+    <div class="f-reservation__wrap d-flex flex-column gap-3">
+      <div class="f-reservation__date-input d-flex flex-column">
+        {% include "@Components/fields/date-field/date-field.twig" %}
+      </div>
+
+      <div class="f-reservation__legends d-flex gap-3 align-items-center">
+        {% for item in com_props.form_data.legends %}
+          {% include "@Components/items/legend-item/legend-item.twig" with {props: item} %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if com_props.form_data.submit %}
+      {% include "@Components/button/button.twig" with {props: com_props.form_data.submit|merge({
+        tag: "button",
+        type: "button",
+        variant: "secondary",
+        full_width: true,
+        extra_class: "f-reservation__submit --modal-submit"
+      })} %}
+    {% endif %}
+  {% endblock %}
+{% endembed %}

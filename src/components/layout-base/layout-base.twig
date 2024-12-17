@@ -1,0 +1,62 @@
+{% block before_html %}{% endblock %}
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Brilo - https://www.brilo.cz">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    {% block meta %}{# metas #}{% endblock %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ base_path }}images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ base_path }}images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="{{ base_path }}images/favicon/site.webmanifest" crossorigin="use-credentials">
+    <link rel="mask-icon" href="{{ base_path }}images/favicon/safari-pinned-tab.svg" color="#1d1d1b">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" type="text/css" href="{{ base_path }}index.css">
+
+    {% block extra_styles %}{# extra styles #}{% endblock %}
+
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+
+  </head>
+
+  <body>
+
+    {% block header %}
+      {% if main_header %}
+        {% include "@Components/main-header/main-header.twig" with {props: main_header} %}
+      {% endif %}
+    {% endblock %}
+
+    <main>
+      {% block main %}{% endblock %}
+    </main>
+
+    {% block footer %}
+      {% include "@Components/main-footer/main-footer.twig" %}
+    {% endblock %}
+
+
+    {% block extra_scripts %}{% endblock %}
+    <script src="{{ base_path }}index.js"></script>
+
+    {% if schema %}
+      <script type="application/ld+json">
+        {{ schema|json_encode|raw }}
+      </script>
+    {% endif %}
+
+  </body>
+</html>

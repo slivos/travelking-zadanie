@@ -1,0 +1,26 @@
+@use "settings/s-colors.scss" as colors;
+
+.i-tag {
+  --padding-x: 16px;
+  --padding-y: 4px;
+  --min-height: 32px;
+  --font-size: 16px;
+
+  padding-block: var(--padding-y);
+  padding-inline: var(--padding-x);
+  min-height: var(--min-height);
+  font-size: var(--font-size);
+
+  &.--sm {
+    --padding-x: 8px;
+    --padding-y: 2px;
+    --min-height: 24px;
+    --font-size: 14px;
+  }
+
+  &.--lg {
+    --padding-x: 24px;
+    --padding-y: 4px;
+    --min-height: 40px;
+  }
+}

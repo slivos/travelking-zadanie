@@ -1,0 +1,57 @@
+{%- set class_name = [
+  "i-banner",
+  "p-6",
+  "u-posr",
+  props.img ? "--image" : "--default",
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+{% set buttons = props.buttons %}
+{% if props.img %}
+  {% set buttons = {
+    primary: props.buttons.primary
+  } %}
+{% endif %}
+
+<article {{ attrs|raw }}>
+  <div class="i-banner__inner d-flex flex-column gap-2">
+
+    <header class="i-banner__header d-flex flex-column gap-2">
+      {% if props.title %}
+        {% include "@Components/base-heading/base-heading.twig" with {props: {
+          title: props.title,
+        }} %}
+      {% endif %}
+
+
+      {% if not props.img and props.description %}
+        <div class="i-banner__description u-fz-16">{{ props.description|raw }}</div>
+      {% endif %}
+
+    </header>
+
+    {% include "@Components/groups/buttons-group/buttons-group.twig" with {props: {
+      buttons: buttons,
+      align: "left",
+      size: "sm",
+      extra_class: "i-banner__buttons",
+    }} %}
+
+  </div>
+
+
+  {% if props.img %}
+    <div class="i-banner__image u-posa top-0 start-0 w-100 h-100 u-z-index-negative">
+      {% include "@Components/img/img.twig" with {props: props.img|merge({
+        objectfit: "cover",
+        width: 1408,
+        height: 176,
+      })} %}
+    </div>
+  {% endif %}
+</article>

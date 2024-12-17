@@ -1,0 +1,50 @@
+@use "settings/s-colors" as colors;
+@use "settings/s-shadows" as shadows;
+
+.m-nav {
+  --transition-timing: 0;
+
+  @include media-breakpoint-up(lg) {
+    margin-left: auto;
+  }
+
+  @include media-breakpoint-down(lg) {
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-color: colors.$white;
+    box-shadow: shadows.$shadow;
+    width: 100%;
+    max-width: 420px;
+    transform: translateX(100%);
+    transition: transform var(--transition-timing) ease;
+    z-index: 100;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+
+    &.--open {
+      transform: translateX(0);
+    }
+
+    &.--transition {
+      --transition-timing: 0.3s;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    max-width: 100%;
+  }
+}
+
+.m-nav__list {
+  padding-inline: 16px;
+  gap: 16px;
+
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+    align-items: start;
+    gap: 32px;
+    padding-inline: 0;
+  }
+}

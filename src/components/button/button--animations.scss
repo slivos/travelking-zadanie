@@ -1,0 +1,49 @@
+.btn {
+  --direction-offset: 8px;
+
+  &.--size-xs {
+    --direction-offset: 4px;
+  }
+
+  &.--animation-right {
+    @media (hover: hover) {
+      &:hover {
+        svg {
+          transform: translateX(var(--direction-offset));
+          transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+      }
+    }
+  }
+
+  &.--animation-left {
+    @media (hover: hover) {
+      &:hover {
+        svg {
+          transform: translateX(calc(-1 * var(--direction-offset)));
+          transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+      }
+    }
+  }
+
+  &.--animation-zoom {
+    @media (hover: hover) {
+      &:hover {
+        svg {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  &.--animation-down {
+    @media (hover: hover) {
+      &:hover {
+        svg {
+          transform: translateY(var(--direction-offset));
+        }
+      }
+    }
+  }
+}

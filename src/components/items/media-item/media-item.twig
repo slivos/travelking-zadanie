@@ -1,0 +1,39 @@
+{% set is_video = props.video.src ? true : false %}
+
+{%- set class_name = [
+  "i-media",
+  "u-posr overflow-hidden",
+  is_video ? "--video u-img-hover u-cursor-pointer" : null,
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- if is_video %}
+  {%- set attrs = attrs|merge(['data-fancybox data-src="' ~ props.video.src ~ '"']) -%}
+{%- endif -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+<div {{ attrs|raw }}>
+  {% if props.img %}
+    {% include "@Components/img/img.twig" with {props: props.img|merge({
+      width: 688,
+      height: 459,
+      objectfit: "cover",
+      is_placeholder: true,
+      ratio: "3-2",
+    })} %}
+  {% endif %}
+
+  {% if is_video %}
+    <div class="i-media__play-icon u-posa u-top-50-p u-left-50-p u-translate-middle">
+      {% include "@Components/icon/icon.twig" with {props: {
+        src: "@Images/svg/play.svg",
+        size: "xxl",
+        color: "primary",
+      }} %}
+    </div>
+  {% endif %}
+</div>

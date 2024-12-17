@@ -1,0 +1,58 @@
+{% set com_props = props %}
+
+{% set section_props = {
+  name: "s-hotel-availability",
+  id: props.id,
+  is_container: props.is_container,
+  spacing: props.spacing,
+  extra_class: "u-posr"
+} %}
+
+
+{% embed "@Components/base-section/base-section.twig" with {props: section_props} %}
+  {% block content %}
+
+    {% if com_props.header %}
+      {% include "@Components/base-header/base-header.twig" with {props: com_props.header} %}
+    {% endif %}
+
+    {% if com_props.buttons %}
+      {% include "@Components/groups/buttons-group/buttons-group.twig" with {props: {
+        buttons: com_props.buttons,
+        size: "sm"
+      }} %}
+
+      {% include "@Components/modals/reservation-modal.twig" with {props: {
+        title: com_props.modal.title,
+        form: com_props.modal.form_data,
+      }} %}
+    {% endif %}
+
+    <div class="s-hotel-availability__decoration u-posa">
+      {% include "@Components/img/img.twig" with {props: {
+        src: base_path ~ "images/svg/arrow-decoration.svg",
+        width: 300,
+        height: 300,
+        objectfit: "contain",
+        fetchpriority: "high",
+        disable_lazy: true,
+        ratio: "1-1",
+      }} %}
+    </div>
+
+    {% include "@Components/groups/hotel-results-group/hotel-results-group.twig" with {props: com_props.group} %}
+
+    <div class="s-hotel-availability__empty d-flex flex-column align-items-center text-center gap-1 --hidden">
+      {% include "@Components/icon/icon.twig" with {props: {
+        src: "@Images/svg/sad.svg",
+        size: "lg"
+      }} %}
+
+      {% include "@Components/base-heading/base-heading.twig" with {props: {
+        title: com_props.empty_title,
+        level: 3,
+        style: "h4"
+      }} %}
+    </div>
+  {% endblock %}
+{% endembed %}

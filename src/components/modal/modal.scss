@@ -1,0 +1,82 @@
+@use "settings/s-colors.scss" as colors;
+
+.c-modal__content {
+  width: var(--width);
+  background-clip: padding-box;
+  background-color: var(--content-background-color);
+  border-radius: var(--content-border-radius);
+  box-shadow: var(--content-box-shadow);
+  transform: translateY(var(--content-translate));
+  transition: transform var(--transtion-length) ease;
+}
+
+.c-modal__body {
+  padding: var(--content-padding-y) var(--content-padding-x);
+}
+
+.c-modal__header {
+  padding: var(--content-padding-y) var(--content-padding-x) 0;
+}
+
+.c-modal__close-cross {
+  --border-radius: 6px;
+
+  &.btn.--sm {
+    --min-height: 40px;
+  }
+
+  transform: translate(-16px, 16px);
+}
+
+.c-modal__footer {
+  padding: 0 var(--content-padding-x) var(--content-padding-y);
+}
+
+.c-modal {
+  --transtion-length: 300ms;
+  --width: min(100% - 32px, 720px);
+  --dialog-background-color: rgb(0 0 0 / 25%);
+  --content-translate: 32px;
+  --content-padding-x: 16px;
+  --content-padding-y: 24px;
+  --content-background-color: #{colors.$white};
+  --content-border-radius: 8px;
+  --content-box-shadow: 4px 4px 24px #0f26391a;
+
+  z-index: 9000;
+  background-color: var(--dialog-background-color);
+  backdrop-filter: blur(4px);
+  transition: opacity var(--transtion-length) ease;
+
+  &.--open {
+    --content-translate: 0;
+
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+
+  &.--hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: -1;
+  }
+
+  &.--size-sm {
+    --width: min(100% - 32px, 800px);
+
+    @include media-breakpoint-down(lg) {
+      --width: min(100% - 16px, 576px);
+    }
+  }
+
+  &.--size-xl {
+    --width: min(100% - 32px, 1140px);
+  }
+
+  @include media-breakpoint-up(sm) {
+    --content-padding-x: 24px;
+    --content-padding-y: 32px;
+  }
+}

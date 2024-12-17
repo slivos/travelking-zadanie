@@ -1,0 +1,32 @@
+{
+  "usps_sample": [
+    {
+      "title": "Cenová výhoda a flexibilita",
+      "description": "Časté zľavy, akcie a promo kódy, ktoré vám umožnia získať lepšie ceny alebo pridať ďalšie výhody (napr. bezplatné raňajky, parkovanie, alebo wellness prístup).",
+      "icon": {
+        "src": "@Images/advantages-ico/building.svg"
+      }
+    },
+    {
+      "title": "Jednoduchosť a pohodlie",
+      "description": "Rezervácia hotela je dostupná 24/7 a môže sa vykonať z pohodlia domova alebo mobilu. Nákup sa dá realizovať rýchlo, s okamžitým potvrdením.",
+      "icon": {
+        "src": "@Images/advantages-ico/air-balloon.svg"
+      }
+    },
+    {
+      "title": "Široká ponuka a rôznorodé možnosti ubytovania",
+      "description": "Od luxusných hotelov po skromné penzióny alebo apartmány. Online platformy vám umožnia vybrať si medzi rôznymi možnosťami v závislosti od rozpočtu a preferencií.",
+      "icon": {
+        "src": "@Images/advantages-ico/hotel.svg"
+      }
+    },
+    {
+      "title": "Recenzie a hodnotenia",
+      "description": "Väčšina rezervačných platforiem, ako je Booking.com alebo Expedia, poskytuje recenzie od predchádzajúcich hostí.",
+      "icon": {
+        "src": "@Images/advantages-ico/glasses.svg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+@use "settings/s-colors.scss" as colors;
+
+a {
+  display: inline;
+  color: colors.$black;
+  transition: text-decoration-color 0.3s ease;
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
+    color: colors.$black;
+    text-decoration-color: transparent;
+  }
+}

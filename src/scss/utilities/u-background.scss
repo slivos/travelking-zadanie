@@ -1,0 +1,17 @@
+@use "settings/s-colors.scss" as colors;
+
+.u-bg-primary {
+  background-color: colors.$primary;
+}
+
+.u-bg-primary-200 {
+  background-color: colors.$primary-200;
+}
+
+.u-bg-primary-300 {
+  background-color: colors.$primary-300;
+}
+
+.u-bg-gray {
+  background-color: colors.$gray;
+}

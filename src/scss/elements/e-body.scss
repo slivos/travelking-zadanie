@@ -1,0 +1,12 @@
+@use "settings/s-fonts.scss" as fonts;
+
+body {
+  font-family: fonts.$primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+}

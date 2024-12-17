@@ -1,0 +1,5 @@
+{% if props.items %}
+  <div class="g-usps row gy-4 justify-content-center">
+    {% include "@Components/groups/usps-group/usps-group--raw.twig" with {props: props} %}
+  </div>
+{% endif %}

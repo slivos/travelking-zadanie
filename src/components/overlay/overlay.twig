@@ -1,0 +1,16 @@
+{%- set class_name = [
+  "c-overlay",
+  "--js-main-nav-closer",
+  "w-100 h100",
+  "u-cursor-pointer u-z-index-1",
+  props.absolute == true ? "--absolute" : null,
+  props.extra_class ? props.extra_class : null,
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+<div {{ attrs|raw }}></div>

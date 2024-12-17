@@ -1,0 +1,49 @@
+{%- set class_name = [
+  'base-form',
+  props.validate ? "--validate" : null,
+  props.extra_class ? props.extra_class : null
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- if props.id is defined %}
+  {% set attrs = attrs|merge(['id="' ~ props.id ~ '"']) %}
+{%- endif -%}
+
+{%- if props.action is defined %}
+  {% set attrs = attrs|merge(['action="' ~ props.action ~ '"']) %}
+{%- endif -%}
+
+{%- if props.method is defined %}
+  {% set attrs = attrs|merge(['method="' ~ props.method ~ '"']) %}
+{%- endif -%}
+
+{%- if props.enctype is defined %}
+  {% set attrs = attrs|merge(['enctype="' ~ props.enctype ~ '"']) %}
+{%- endif -%}
+
+{%- if props.autocomplete is defined %}
+  {%- set attrs = attrs|merge(['autocomplete="' ~ (props.autocomplete ? 'on' : 'off') ~ '"']) -%}
+{%- endif -%}
+
+{%- if props.name %}
+  {% set attrs = attrs|merge(['name=' ~ props.name ~ '']) %}
+{%- endif -%}
+
+{%- if props.data is defined -%}
+  {%- set data_attrs = [] -%}
+  {%- for key, attribute in props.data -%}
+    {%- set data_attrs = data_attrs|merge(['data-' ~ key ~ '="' ~ attribute ~ '"']) -%}
+  {%- endfor -%}
+  {%- set data_attrs = data_attrs|join(' ')|trim -%}
+  {%- set attrs = attrs|merge([data_attrs]) -%}
+{%- endif -%}
+
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+<form {{ attrs|raw }}>
+  {% block content %}{# content #}{% endblock %}
+</form>

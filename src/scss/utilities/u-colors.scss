@@ -1,0 +1,9 @@
+@use "settings/s-colors.scss" as colors;
+
+.u-color-primary {
+  color: colors.$primary;
+}
+
+.u-color-white {
+  color: colors.$white;
+}

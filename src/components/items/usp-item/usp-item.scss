@@ -1,0 +1,8 @@
+@use "settings/s-colors.scss" as colors;
+
+.i-usp__icon {
+  width: 104px;
+  height: 104px;
+  background-color: colors.$primary-300;
+  border-radius: 8px;
+}

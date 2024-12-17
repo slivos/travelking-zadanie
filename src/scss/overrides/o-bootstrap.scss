@@ -1,0 +1,18 @@
+.container {
+  padding-right: 26px;
+  padding-left: 26px;
+
+  @include media-breakpoint-down(sm) {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  @media (width <= 359px) {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}
+
+.gap-0\.5 {
+  gap: 4px;
+}

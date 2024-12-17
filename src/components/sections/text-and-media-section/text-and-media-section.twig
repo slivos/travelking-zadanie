@@ -1,0 +1,52 @@
+{% set com_props = props %}
+
+{% set section_props = {
+  name: "s-text-media",
+  id: props.id,
+  is_container: props.is_container,
+  spacing: props.spacing,
+  extra_class: props.order in ["reverse", "default"] ? "--" ~ props.order : "--default",
+} %}
+
+{% set header_positon = props.header_position|default("in") %}
+
+
+{% embed "@Components/base-section/base-section.twig" with {props: section_props} %}
+  {% block content %}
+
+    {% if com_props.header and header_positon == "out" %}
+      {% include "@Components/base-header/base-header.twig" with {props: com_props.header} %}
+    {% endif %}
+
+    <div class="s-text-media__grid d-flex flex-column gap-4">
+
+      <div class="s-text-media__col --media-col w-100">
+        {% include "@Components/items/media-item/media-item.twig" with {props: com_props.media} %}
+      </div>
+
+      <div class="s-text-media__col --content-col w-100">
+
+        {% if com_props.header and header_positon == "in" %}
+          {% include "@Components/base-header/base-header.twig" with {props: com_props.header|merge({
+            spacing: "sm",
+            variant: "left",
+            extra_class: "s-text-media__header-in",
+          })} %}
+        {% endif %}
+
+        {% if com_props.content %}
+          <div class="s-text-media__body entry-content">
+            {{ com_props.content|raw }}
+          </div>
+        {% endif %}
+
+        {% include "@Components/groups/buttons-group/buttons-group.twig" with {props: {
+          buttons: com_props.buttons,
+          align: "left",
+        }} %}
+
+      </div>
+
+    </div>
+  {% endblock %}
+{% endembed %}

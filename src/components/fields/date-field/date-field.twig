@@ -1,0 +1,76 @@
+{%- set class_name = [
+  "f-date",
+  "d-flex flex-column gap-1 u-posr",
+  props.extra_class ? props.extra_class : null,
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+{# Input attrs #}
+
+{%- set class_name_input = [
+  "f-base",
+  "f-date__input",
+  "flatpicker",
+]|join(' ')|trim -%}
+
+{%- set attrs_input = [
+  'class="' ~ class_name_input ~ '"',
+] -%}
+
+{%- set attrs_input = attrs_input|merge(['type="date"']) -%}
+
+{%- if props.id is defined %}
+  {%- set attrs_input = attrs_input|merge(['id="' ~ props.id ~ '"']) -%}
+{%- endif -%}
+
+{%- if props.range is defined %}
+  {%- set attrs_input = attrs_input|merge(['data-range']) -%}
+{%- endif -%}
+
+{% if props.native == true %}
+  {%- set attrs_input = attrs_input|merge(['onfocus="this.showPicker()"']) -%}
+{% endif %}
+
+{%- if props.placeholder %}
+  {%- set attrs_input = attrs_input|merge(['placeholder="' ~ props.placeholder ~ '"']) -%}
+{%- endif -%}
+
+{%- if props.value is defined %}
+  {%- set attrs_input = attrs_input|merge(['value="' ~ props.value ~ '"']) -%}
+{%- endif -%}
+
+{%- if props.name is defined %}
+  {% set attrs_input = attrs_input|merge(['name=' ~ props.name ~ '']) %}
+{%- endif -%}
+
+{%- if props.required == true %}
+  {%- set attrs_input = attrs_input|merge(['required']) -%}
+{%- endif -%}
+
+{%- if props.autocomplete is defined %}
+  {%- set attrs_input = attrs_input|merge(['autocomplete="' ~ (props.autocomplete == true ? 'on' : 'off') ~ '"']) -%}
+{%- endif -%}
+
+
+{%- set attrs_input = attrs_input|join(' ')|trim -%}
+
+<div {{ attrs|raw }}>
+
+  {% if props.label %}
+    {% include "@Components/fields/label-field/label-field.twig" with {props: {
+      title: props.label,
+      id: props.id,
+      required: props.required,
+    }} %}
+  {% endif %}
+
+  <div class="f-date__wrap d-flex align-items-center u-posr">
+    <input {{ attrs_input|raw }}>
+  </div>
+
+</div>

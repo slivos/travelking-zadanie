@@ -1,0 +1,16 @@
+{% set opener_props = {
+  icon_only: true,
+  extra_class: "--js-main-nav-opener",
+  tag: "button",
+  variant: "outline",
+  size: "xs",
+  icon: {
+    src: "@Images/svg/menu.svg",
+    color: "primary-300"
+  },
+  title: "open navigation"|trans,
+} %}
+
+<div class="d-block d-lg-none">
+  {% include "@Components/button/button.twig" with {props: opener_props} %}
+</div>

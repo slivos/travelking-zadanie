@@ -1,0 +1,25 @@
+.base-section {
+  --spacing: var(--section-spacing);
+
+  padding-block: var(--spacing);
+
+  @include media-breakpoint-down(sm) {
+    --spacing: 56px;
+  }
+
+  &.--background {
+    background-color: var(--section-background-color);
+  }
+
+  &.--top-0 {
+    padding-top: 0;
+  }
+
+  &.--bottom-0 {
+    padding-bottom: 0;
+  }
+
+  &.--none {
+    --spacing: 0;
+  }
+}

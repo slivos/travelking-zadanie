@@ -1,0 +1,21 @@
+{%- set src_set_attribute = props.native_lazyload or props.disable_lazy ? 'srcset="' : 'srcset="" data-srcset="' -%}
+{%- for source in props.sources -%}
+
+  {%- set attrs = [] -%}
+
+  {%- if source.srcset -%}
+    {%- set attrs = attrs|merge([src_set_attribute ~ source.srcset  ~ '"']) -%}
+  {%- endif -%}
+
+  {%- if source.type -%}
+    {%- set attrs = attrs|merge(['type="' ~ source.type ~ '"']) -%}
+  {%- endif -%}
+
+  {%- if source.media -%}
+    {%- set attrs = attrs|merge(['media="' ~ source.media ~ '"']) -%}
+  {%- endif -%}
+
+  {%- set attrs = attrs|join(' ')|trim -%}
+
+  <source {{ attrs|raw }}>
+{%- endfor -%}

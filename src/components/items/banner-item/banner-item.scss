@@ -1,0 +1,38 @@
+@use "settings/s-colors" as colors;
+
+.i-banner__header {
+  max-width: 100ch;
+}
+
+.i-banner__description {
+  line-height: 24px;
+}
+
+.i-banner {
+  background-color: colors.$primary-100;
+
+  @include media-breakpoint-down(sm) {
+    padding: 32px;
+  }
+
+  &.--image {
+    background-color: transparent;
+
+    .i-banner__inner {
+      @include media-breakpoint-up(md) {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+    }
+
+    .i-banner__description {
+      display: none;
+    }
+
+    .i-banner__buttons {
+      margin-top: 0;
+    }
+  }
+}

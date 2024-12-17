@@ -1,0 +1,5 @@
+{% for item in props.items %}
+  <div class="g-usps__cell col-lg-3 col-sm-6">
+    {% include "@Components/items/usp-item/usp-item.twig" with {props: item} %}
+  </div>
+{% endfor %}

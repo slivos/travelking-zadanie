@@ -1,0 +1,25 @@
+{% set com_props = props %}
+
+{% embed "@Components/modal/modal.twig" with {props: {
+  id: props.id ?? "modal-reservation",
+  size: "sm",
+  header: {
+    title: props.title
+  },
+  close_modal_target: props.close_modal_target,
+  extra_class: "m-reservation"
+}} %}
+
+  {% block content %}
+
+    <div class="d-flex flex-column">
+      <div class="m-reservation__wrapper">
+        {% include "@Components/forms/reservation-form/reservation-form.twig" with {props: {
+          form_data: com_props.form
+        }|default({})|merge({
+          extra_class: "m-reservation__form",
+        })} %}
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,5 @@
+.m-header-logo {
+  @include media-breakpoint-down(sm) {
+    max-width: 120px;
+  }
+}

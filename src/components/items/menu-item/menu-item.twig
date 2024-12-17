@@ -1,0 +1,20 @@
+{% for item in items %}
+
+  {%- set class_name = [
+    "i-menu",
+    "d-block u-fw-600",
+  ]|join(' ')|trim -%}
+
+  {%- set attrs = [
+    'class="' ~ class_name ~ '"',
+  ] -%}
+
+  {%- set attrs = attrs|join(' ')|trim -%}
+
+  <li {{ attrs|raw }}>
+
+    <a class="i-menu__link" href="{{ item.url }}" {% if item.blank == true %} target="_blank" {% endif %}>
+      {{ item.title }}
+    </a>
+  </li>
+{% endfor %}

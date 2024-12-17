@@ -1,0 +1,17 @@
+{% set com_props = props %}
+
+{% set section_props = {
+  name: "s-banner",
+  id: props.id,
+  is_container: props.is_container,
+  spacing: props.spacing,
+} %}
+
+
+{% embed "@Components/base-section/base-section.twig" with {props: section_props} %}
+  {% block content %}
+
+    {% include "@Components/items/banner-item/banner-item.twig" with {props: com_props.banner} %}
+
+  {% endblock %}
+{% endembed %}

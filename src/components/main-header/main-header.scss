@@ -1,0 +1,24 @@
+@use "settings/s-colors" as colors;
+@use "settings/s-shadows" as shadows;
+
+.m-header {
+  --shadow-color: transparent;
+
+  top: 0;
+  left: 0;
+  position: sticky;
+  z-index: 5;
+  background-color: colors.$white;
+  box-shadow: 4px 8px 24px var(--shadow-color);
+  transition: box-shadow 0.3s ease;
+  transition-property: box-shadow, transform;
+
+  &.headroom--not-top {
+    --shadow-color: #{shadows.$color};
+  }
+}
+
+.m-header__body {
+  min-height: 72px;
+  padding-block: 14px;
+}

@@ -1,0 +1,27 @@
+@use "settings/s-colors" as colors;
+
+.i-menu__link {
+  display: inline-flex;
+  gap: 8px;
+  min-height: 24px;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+
+  &::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    opacity: 1;
+    display: block;
+    background: colors.$primary-300;
+    height: 2px;
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+}

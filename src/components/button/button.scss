@@ -1,0 +1,77 @@
+@use "settings/s-colors" as colors;
+@use "settings/s-fonts" as fonts;
+
+.btn__icon {
+  .icon {
+    --size: var(--svg-size);
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+}
+
+.btn {
+  --border-radius: 6px;
+  --font-size: 16px;
+  --font-weight: 600;
+  --font-color: #{colors.$white};
+  --font-family: #{fonts.$primary};
+  --padding-y: 16px;
+  --padding-x: 24px;
+  --min-height: 56px;
+  --svg-size: 20px;
+
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  color: var(--font-color);
+  font-weight: var(--font-weight);
+  border-radius: var(--border-radius);
+  padding-inline: var(--padding-x);
+  padding-block: var(--padding-y);
+  min-height: var(--min-height);
+  touch-action: manipulation;
+
+  &:hover {
+    text-decoration: none;
+    color: var(--font-color);
+  }
+
+  &:focus,
+  &:active {
+    outline: 0;
+    color: var(--font-color);
+    text-decoration: none;
+  }
+
+  path {
+    fill: var(--font-color);
+  }
+
+  &.--icon-before {
+    .btn__icon {
+      order: -1;
+    }
+  }
+
+  &.--icon-only {
+    width: var(--min-height);
+    height: var(--min-height);
+    min-height: auto;
+    min-width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    .btn__title {
+      display: none;
+    }
+  }
+
+  &.--full-width-mobile {
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+  }
+}

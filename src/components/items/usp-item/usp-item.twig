@@ -1,0 +1,47 @@
+{%- set class_name = [
+  "i-usp",
+  "d-flex",
+  "flex-column",
+  "gap-4",
+  "align-items-center",
+  "text-center",
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+<div {{ attrs|raw }}>
+
+  {% if props.icon.src %}
+    <div class="i-usp__icon d-flex align-items-center justify-content-center flex-shrink-0">
+      {% include "@Components/icon/icon.twig" with {props: props.icon|merge({size: "8xl"})} %}
+    </div>
+  {% endif %}
+
+  <div class="i-usp__body d-flex flex-column gap-2 align-items-center">
+
+    {% include "@Components/base-heading/base-heading.twig" with {props: {
+      title: props.title,
+      level: 3,
+      style: "h5",
+      name: "i-usp__heading",
+    }} %}
+
+    {% if props.description %}
+      <div class="i-usp__description d-flex flex-column gap-1 u-fz-sm">{{ props.description|raw }}</div>
+    {% endif %}
+
+    {% if props.link %}
+      <div class="i-usp__link">
+        {% include "@Components/link/link-arrow-right.twig" with {props: props.link|merge({
+          color: "primary",
+        })} %}
+      </div>
+    {% endif %}
+
+  </div>
+
+</div>

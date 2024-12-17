@@ -1,0 +1,79 @@
+@use "settings/s-colors" as colors;
+
+.icon {
+  --size: 20px;
+
+  color: colors.$black;
+  flex: 0 0 var(--size);
+  max-width: var(--size);
+  height: var(--size);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  &.--colored {
+    color: var(--color);
+
+    path {
+      fill: var(--color);
+    }
+  }
+
+  &.--primary {
+    --color: #{colors.$primary};
+  }
+
+  &.--primary-300 {
+    --color: #{colors.$primary-300};
+  }
+
+  &.--gray {
+    --color: #{colors.$gray};
+  }
+
+  &.--white {
+    --color: #{colors.$white};
+  }
+
+  &.--black {
+    --color: #{colors.$black};
+  }
+
+  &.--danger {
+    --color: #{colors.$danger};
+  }
+
+  &.--8xl {
+    --size: 80px;
+  }
+
+  &.--xxxl {
+    --size: 48px;
+  }
+
+  &.--xxl {
+    --size: 40px;
+  }
+
+  &.--xl {
+    --size: 32px;
+  }
+
+  &.--lg {
+    --size: 24px;
+  }
+
+  &.--md {
+    --size: 20px;
+  }
+
+  &.--sm {
+    --size: 16px;
+  }
+
+  &.--xs {
+    --size: 10px;
+  }
+}

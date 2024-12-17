@@ -1,0 +1,23 @@
+@use "settings/s-colors" as colors;
+
+.c-overlay {
+  --opacity: 0;
+  --pointer-events: none;
+  --position: fixed;
+
+  inset: 0;
+  background-color: colors.$black;
+  opacity: var(--opacity);
+  pointer-events: var(--pointer-events);
+  transition: opacity 0.3s ease;
+  position: var(--position);
+
+  &.--show {
+    --opacity: 0.75;
+    --pointer-events: auto;
+  }
+
+  &.--absolute {
+    --position: absolute;
+  }
+}

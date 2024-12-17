@@ -1,0 +1,14 @@
+<nav class="m-nav" aria-label="primary navigation">
+
+  <header class="m-nav__header d-block d-lg-none py-2 px-2">
+    {% include "@Components/button/button-nav-closer.twig" %}
+  </header>
+
+  <ul class="m-nav__list d-flex flex-column">
+    {% include "@Components/items/menu-item/menu-item.twig" with {
+      items: props.nav,
+      level: 1,
+    } only %}
+  </ul>
+
+</nav>

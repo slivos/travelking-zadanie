@@ -1,0 +1,15 @@
+.u-img-hover {
+  overflow: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+
+  img {
+    transition-property: opacity, transform;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.03);
+    }
+  }
+}

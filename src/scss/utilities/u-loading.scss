@@ -1,0 +1,49 @@
+@use "settings/s-colors" as colors;
+
+.--loading {
+  position: relative;
+  pointer-events: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: colors.$gray;
+    z-index: 9000;
+    transition: opacity 0.3s ease;
+    bottom: 0;
+    left: 0;
+    opacity: 0.8;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 30px;
+    left: 50%;
+    top: 50%;
+    margin-top: -15px;
+    margin-left: -15px;
+    transform: translateX(-50%) translateY(-50%);
+    border: 4px solid colors.$primary-400;
+    border-bottom-color: colors.$primary;
+    border-radius: 50%;
+    animation: rotation 1s ease infinite;
+    animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 9001;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

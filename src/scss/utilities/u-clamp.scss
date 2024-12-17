@@ -1,0 +1,17 @@
+.u-clamp {
+  --lines: 2;
+
+  display: -webkit-box;
+  -webkit-line-clamp: var(--lines);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.u-clamp-4 {
+  --lines: 4;
+}
+
+.u-clamp-1 {
+  --lines: 1;
+}

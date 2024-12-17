@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["./components/*"]
+    },
+    "esModuleInterop": true,
+    "target": "es2022",
+    "module": "es2022",
+    "strict": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "checkJs": false,
+    "outDir": "dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist/**/*"],
+  "typeRoots": ["./node_modules/@types", "./src/@types"]
+}

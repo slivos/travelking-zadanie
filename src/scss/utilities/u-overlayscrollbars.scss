@@ -1,0 +1,20 @@
+@use "settings/s-colors" as colors;
+
+.u-scrollbar {
+  .os-scrollbar {
+    --os-handle-bg: #{colors.$primary-300};
+    --os-handle-bg-hover: #{colors.$primary-400};
+    --os-handle-bg-active: #{colors.$primary};
+    --os-handle-border-radius: 4px;
+    --os-size: 8px;
+    --os-track-bg: #{colors.$gray-200};
+    --os-track-bg-hover: #{colors.$gray-200};
+    --os-track-bg-active: #{colors.$gray-200};
+
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}

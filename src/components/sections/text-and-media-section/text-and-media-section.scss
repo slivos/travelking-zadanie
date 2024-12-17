@@ -1,0 +1,24 @@
+.s-text-media__grid {
+  @include media-breakpoint-up(lg) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.s-text-media__col.--content-col {
+  order: var(--content-order);
+  padding-left: var(--content-offset-left);
+  padding-right: var(--content-offset-right);
+}
+
+.s-text-media {
+  --content-offset-left: 0;
+  --content-offset-right: 0;
+  --content-order: 1;
+
+  &.--reverse {
+    @include media-breakpoint-up(lg) {
+      --content-order: -1;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{%- set class_name = [
+  "i-legend",
+  "d-inline-flex align-items-center gap-1",
+  props.price in ["high", "middle", "low"] ? "--" ~ props.price : null,
+  props.extra_class|default(false) ? props.extra_class : null,
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+<span {{ attrs|raw }}>
+  {% if props.price %}
+    <div class="i-legend__price">
+    </div>
+  {% endif %}
+
+  {% if props.title %}
+    <span class="i-legend__title u-fz-xs">{{ props.title }}</span>
+  {% endif %}
+</span>

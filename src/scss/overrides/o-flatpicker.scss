@@ -1,0 +1,218 @@
+@use "settings/s-colors" as colors;
+
+div.flatpickr-calendar {
+  --theme-color: #{colors.$primary-200};
+  --theme-color-hover: transparent;
+  --border-color: transparent;
+  --font-color: #{colors.$black};
+
+  box-shadow: none;
+
+  .flatpickr-day {
+    color: var(--font-color);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    line-height: 29px;
+    vertical-align: middle;
+    margin-top: 8px;
+
+    &:hover {
+      color: var(--font-color);
+      background: var(--theme-color-hover);
+      border: 1px solid var(--border-color);
+    }
+
+    &:focus {
+      color: var(--font-color);
+    }
+
+    &.flatpickr-disabled {
+      color: #3939391a;
+
+      &:hover {
+        background: var(--theme-color-hover);
+        border: 1px solid var(--border-color);
+      }
+    }
+
+    &.--high-price {
+      background: colors.$high-price;
+    }
+
+    &.--middle-price {
+      background: colors.$middle-price;
+    }
+
+    &.--low-price {
+      background: colors.$low-price;
+    }
+
+    @include media-breakpoint-up(lg) {
+      max-width: 48px;
+      height: 48px;
+      line-height: 34px;
+    }
+  }
+
+  .flatpickr-day.selected {
+    color: var(--font-color);
+    background: var(--theme-color);
+    border-color: var(--theme-color);
+
+    &:hover {
+      background: var(--theme-color);
+      border-color: var(--theme-color);
+    }
+  }
+
+  span.flatpickr-day.inRange {
+    box-shadow:
+      -5px 0 #{colors.$gray-200},
+      5px 0 #{colors.$gray-200};
+    border-color: transparent;
+    background: colors.$gray-200;
+  }
+
+  span.flatpickr-day.startRange,
+  span.flatpickr-day.endRange {
+    background: var(--theme-color);
+    border-color: var(--theme-color);
+  }
+
+  span.flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
+  span.flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
+  span.flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
+    box-shadow: -10px 0 var(--theme-color);
+  }
+
+  .flatpickr-months {
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+
+    .flatpickr-prev-month.flatpickr-disabled {
+      display: none;
+    }
+
+    .flatpickr-prev-month,
+    .flatpickr-next-month {
+      --svg-color: #{colors.$primary-300};
+      --border-color: #{colors.$primary-200};
+      --background: #{colors.$white};
+      --box-shadow: 0 0 0 0 transparent;
+
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background-color: var(--background);
+      box-shadow: var(--box-shadow);
+      border: 1px solid var(--border-color);
+      transition: box-shadow 0.3s ease;
+
+      svg {
+        fill: var(--svg-color);
+      }
+
+      &:hover {
+        --box-shadow: #{0 4px 16px 1px rgb(7 154 145 / 20%)};
+
+        svg {
+          fill: var(--svg-color);
+        }
+      }
+    }
+
+    .flatpickr-month {
+      display: flex;
+
+      @include media-breakpoint-up(lg) {
+        width: 100%;
+        height: 48px;
+      }
+    }
+
+    .flatpickr-current-month {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding-top: 0;
+
+      span.cur-month {
+        background: transparent;
+
+        &:hover {
+          background: transparent;
+        }
+      }
+
+      @include media-breakpoint-up(lg) {
+        width: 100%;
+        height: 48px;
+      }
+    }
+
+    .flatpickr-monthDropdown-months,
+    .numInput.cur-year {
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 24px;
+      padding: 0;
+      text-align: center;
+      appearance: none;
+      user-select: none;
+      pointer-events: none;
+      background: none;
+    }
+
+    .numInput.cur-year {
+      appearance: none;
+      user-select: none;
+      pointer-events: none;
+      font-size: 0.875rem;
+
+      @include media-breakpoint-up(lg) {
+        font-size: 1.125rem;
+      }
+    }
+
+    .numInputWrapper {
+      &:hover {
+        background: transparent;
+      }
+
+      span {
+        display: none;
+        pointer-events: none;
+        user-select: none;
+      }
+    }
+  }
+
+  span.flatpickr-weekday {
+    color: colors.$primary;
+  }
+
+  div.dayContainer {
+    @include media-breakpoint-up(lg) {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  div.flatpickr-days {
+    @include media-breakpoint-up(lg) {
+      width: 100%;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: 100%;
+  }
+}

@@ -1,0 +1,87 @@
+{%- set class_name = [
+  'c-modal',
+  "w-100 h-100 pe-none overflow-y-auto overflow-x-hidden opacity-0",
+  "u-cursor-pointer u-fixed top-0 start-0 u-outline-0",
+  props.size in ['xl', 'sm'] ? '--size-' ~ props.size : null,
+  props.extra_class|default(false) ? props.extra_class : null,
+  props.open_init ? '--open' : '--hidden',
+]|join(' ')|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- if props.id is defined %}
+  {% set attrs = attrs|merge(['id="' ~ props.id ~ '"']) %}
+{%- endif -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+{% set footer_aligns = {
+  left: 'justify-content-start',
+  right: 'justify-content-end',
+  center: 'justify-content-center',
+  between: 'justify-content-between',
+} %}
+
+{%- set footer_class_name = [
+  "c-modal__footer",
+  "d-flex flex-shrink-0 flex-wrap gap-2 align-items-center",
+  props.footer.align in ['left', 'right', 'between', 'center'] ? footer_aligns[props.footer.align] : footer_aligns.left,
+]|join(' ')|trim -%}
+
+{%- set footer_attrs = [
+  'class="' ~ footer_class_name ~ '"',
+] -%}
+
+{%- set footer_attrs = footer_attrs|join(' ')|trim -%}
+
+<div {{ attrs|raw }}>
+  <div class="c-modal__dialog u-posr pe-none my-4 mx-auto w-auto">
+
+    <div class="c-modal__content u-posr mx-auto pe-auto u-cursor-auto u-outline-0">
+      <div class="c-modal__inner d-flex flex-column">
+
+        {% if props.header.title %}
+          <header class="c-modal__header d-flex flex-shrink-0 align-items-center justify-content-between">
+            {% include "@Components/base-heading/base-heading.twig" with {props: {
+              title: props.header.title,
+              extra_class: "c-modal__heading",
+              style: "h3",
+            }} %}
+          </header>
+        {% endif %}
+
+        <div class="c-modal__body u-posr flex-fill">
+          {% block content %}
+            {# content #}
+          {% endblock %}
+        </div>
+
+        {% if props.footer %}
+          <footer {{ footer_attrs|raw }}>
+            {% block footer %}{# content #}{% endblock %}
+          </footer>
+        {% endif %}
+
+        <div class="c-modal__button-container u-posa u-top-0 u-right-0">
+          {% include "@Components/button/button.twig" with {props: {
+            title: "close modal"|trans,
+            icon_only: true,
+            extra_class: "c-modal__close c-modal__close-cross",
+            tag: "button",
+            variant: "outline",
+            size: "sm",
+            icon: {
+              src: "@Images/svg/xmark.svg",
+            },
+          }} %}
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+</div>

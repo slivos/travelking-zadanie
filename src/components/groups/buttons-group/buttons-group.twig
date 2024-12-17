@@ -1,0 +1,37 @@
+{% set com_props = props %}
+
+{% set buttons = com_props.buttons %}
+
+{% set spacing_prop = com_props.spacing in ['none'] ? '--spacing-' ~ props.spacing : null %}
+
+{% set button_group = {
+  name: "g-buttons",
+  align: com_props.align|default("center"),
+  extra_class: [
+    com_props.extra_class,
+    spacing_prop,
+  ]|join(' ')|trim,
+} %}
+
+{% if buttons %}
+  {% embed "@Components/groups/base-group/base-group.twig" with {props: button_group} %}
+    {% block content %}
+
+      {% if buttons.primary %}
+        {% include "@Components/button/button.twig" with {props: buttons.primary|merge({
+          full_width_mobile: true,
+          size: com_props.size,
+        })} %}
+      {% endif %}
+
+      {% if buttons.secondary %}
+        {% include "@Components/button/button.twig" with {props: buttons.secondary|merge({
+          variant: "outline",
+          full_width_mobile: true,
+          size: com_props.size,
+        })} %}
+      {% endif %}
+
+    {% endblock %}
+  {% endembed %}
+{% endif %}

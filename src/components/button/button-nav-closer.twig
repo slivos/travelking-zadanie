@@ -1,0 +1,14 @@
+{% set closer_props = {
+  icon_only: true,
+  extra_class: "--js-main-nav-closer ms-auto",
+  tag: "button",
+  variant: "outline",
+  size: "xs",
+  icon: {
+    src: "@Images/svg/xmark.svg",
+    color: "primary-300"
+  },
+  title: "close navigation"|trans,
+} %}
+
+{% include "@Components/button/button.twig" with {props: closer_props} %}

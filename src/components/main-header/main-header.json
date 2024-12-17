@@ -1,0 +1,18 @@
+{
+  "main_header": {
+    "nav": [
+      {
+        "title": "Rezervácia",
+        "url": "#hotel-availabilities"
+      },
+      {
+        "title": "Výhody",
+        "url": "#advantages"
+      },
+      {
+        "title": "O nás",
+        "url": "#about"
+      }
+    ]
+  }
+}

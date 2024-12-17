@@ -1,0 +1,42 @@
+{%- set class_name = [
+  "i-tag",
+  "d-inline-flex",
+  "align-items-center",
+  "text-center",
+  "justify-content-center",
+  "gap-1",
+  "u-fw-700",
+  props.variant in ["outline", "blank"] ? "--" ~ props.variant : "",
+  props.size in ["lg", "sm"] ? "--" ~ props.size : "",
+  props.icon_before ? "--icon-before" : null,
+  props.icon_only ? "--icon-only" : null,
+  props.hoverable ? "--hoverable" : null,
+  props.extra_class ? props.extra_class : null,
+  props.name ? props.name : null,
+]|join(" ")|trim -%}
+
+{%- set attrs = [
+  'class="' ~ class_name ~ '"',
+] -%}
+
+{%- if props.url is defined %}
+  {%- set attrs = attrs|merge(['href="' ~ props.url ~ '"']) -%}
+  {%- set attrs = attrs|merge(['title="' ~ props.title ~ '"']) -%}
+{%- endif -%}
+
+{%- set attrs = attrs|join(' ')|trim -%}
+
+{% set tag = props.url ? "a" : "span" %}
+
+<{{ tag }} {{ attrs|raw }}>
+  {% if not props.icon_only %}
+    <span class="i-tag__title">{{ props.title }}</span>
+  {% endif %}
+  {% if props.icon %}
+    <div class="i-tag__icon">
+      {% include "@Components/icon/icon.twig" with {props: props.icon|merge({
+        color: "primary",
+      })} %}
+    </div>
+  {% endif %}
+</{{ tag }}>
