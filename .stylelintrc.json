@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "stylelint-prettier/recommended",
+    "stylelint-config-standard-scss"
+  ],
+  "ignoreFiles": [
+    "./node_modules/**/*.scss"
+  ],
+  "rules": {
+    "selector-pseudo-element-colon-notation": "double",
+    "at-rule-no-unknown": null,
+    "selector-class-pattern": null,
+    "font-family-name-quotes": "always-where-recommended",
+    "scss/double-slash-comment-whitespace-inside": null,
+    "scss/dollar-variable-pattern": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "scss/dollar-variable-empty-line-before": null,
+    "selector-id-pattern": null,
+    "scss/percent-placeholder-pattern": null
+  }
+}

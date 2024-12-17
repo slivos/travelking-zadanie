@@ -1,0 +1,18 @@
+{
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
+    "ecmaVersion": 2020
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {"@typescript-eslint/no-explicit-any": "off"},
+  "root": true,
+  "env": {
+    "es6": true,
+    "commonjs": true,
+    "browser": true,
+    "node": true
+  }
+}
